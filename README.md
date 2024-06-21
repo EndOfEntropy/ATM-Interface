@@ -2,6 +2,7 @@
 This project is an ATM program that allow individuals to perform a range of financial transactions without the need for human assistance. 
 In this ATM program, the user has to select an operation from the options displayed on the screen.
 This ATM program offers a wide array of services such as: the deposit of funds, the withdrawal of funds, check balances, transfer of funds between owned accounts, transfer of funds to another customer.
+
 The first version of the program is a console based-application (Atm.java) that uses the Java Standard Edition libraries. The second version of the ATM application (GuiAtm.java) comes with a Graphical User Interface for more convinience and requires the Swing and Miglayout libraries.
 
 http://www.miglayout.com/
