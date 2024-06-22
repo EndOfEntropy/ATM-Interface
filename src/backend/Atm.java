@@ -1,3 +1,12 @@
+/*	A console-based ATM application
+
+ 	Features:
+    The customer can deposit funds
+    The customer can withdraw funds
+    The customer can check his account balance
+    The customer can transfer funds between his accounts
+    The customer can transfer funds to another customer using the account uid
+ */
 package backend;
 
 import java.util.Scanner;
@@ -325,8 +334,12 @@ public class Atm {
 		return true;
 	}
 	
+	/** Checks that the account uid is valid
+	 * @param uid	account the uid
+	 * @return		whether the account uid is valid
+	 */
 	private boolean validateAccountUidNumber(String uid) {
-		if(uid.length() != 8) {
+		if(uid.length() != bank.getAccountUidLength()) {
 			System.out.println("Invalid account uid. Please enter a valid 8 digit account number.");
 			return false;
 		}
@@ -334,34 +347,6 @@ public class Atm {
 			Long.parseLong(uid);
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid account uid. Please enter a valid 8 digit account number.");
-			return false;
-		}
-		
-		return true;
-	}
-	
-	// Function not used in the project
-	private boolean validateCardNumber(String cardNumber) {
-		if(cardNumber.length() != 16) {
-			return false;
-		}
-		try {
-			Long.parseLong(cardNumber);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-
-		return true;
-	}
-	
-	// Function not used in the project
-	private boolean validatePinCode(String pin) {
-		if(pin.length() != 4) {
-			return false;
-		}
-		try {
-			Integer.parseInt(pin);
-		} catch (NumberFormatException e) {
 			return false;
 		}
 		

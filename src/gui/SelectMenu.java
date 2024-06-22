@@ -11,13 +11,19 @@ import net.miginfocom.swing.MigLayout;
 
 public class SelectMenu {
 	
+	/* Swing resources needed to create the select menu object */
+	/* The user input and the prompt to display to the user */
 	public JPanel panel11, panel12;
 	public JLabel message, summary, errorLabel;
 	public String userInput, prompt;
 	public JTextField padField;
 	public Keypad keypad;
 	
-	
+	/** Create a Select Menu object for the customer to select operations
+	 * @param numAcc		the account number
+	 * @param accSummary	the account summary
+	 * @param prompt		the prompt to display
+	 */
 	SelectMenu(int numAcc, String accSummary, Optional<String> prompt) {
 		// set the panel layouts
 		this.panel11 = new JPanel(new MigLayout("top, center, flowy, debug", "center"));
@@ -45,6 +51,9 @@ public class SelectMenu {
 		keyPadListeners();
 	}
 	
+	/** Add the created select menu to the panel
+	 * @param panel		the JPanel object
+	 */
 	public void addSelectMenu(JPanel panel) {
 		// add the components to the center panel and set the layout
 		panel.setLayout(new MigLayout("top, center, flowy, debug", "center"));
@@ -78,16 +87,25 @@ public class SelectMenu {
 		this.keypad.bDel.addActionListener(BC2);
 	}
 	
+	/** Update the message to display
+	 * @param text		the string
+	 */
 	public void updateMessage(String text) {
 		this.message.setText(text);
 	}
 	
+	/**
+	 * Clear the fields in the select menu after the user input is successful
+	 */
 	public void clearFields() {
 		this.userInput = "";
 		this.errorLabel.setText("");
 		this.padField.setText("");
 	}
 	
+	/**
+	 * Clear the fields in the select menu after the user input is unsuccessful
+	 */
 	public void retry() {
 		this.userInput = "";
 		this.padField.setText("");
@@ -108,7 +126,7 @@ public class SelectMenu {
 	}
 	
 	/**
-	 * class that handles events for the clear/cancel buttons event
+	 * class that handles events for the clear and cancel buttons event
 	 */
 	public class BClear implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -118,7 +136,7 @@ public class SelectMenu {
 	}
 	
 	/**
-	 * class that handles events for the delete buttons event
+	 * class that handles events for the delete button event
 	 */
 	public class BDelete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

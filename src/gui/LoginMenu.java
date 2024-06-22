@@ -11,6 +11,8 @@ import net.miginfocom.swing.MigLayout;
 
 public class LoginMenu {
 	
+	/* Swing resources needed to create the login menu object */
+	/* The user input and the prompts to display to the user */
 	public JPanel panel11, panel12;
 	public JLabel message1, message2, errorLabel;
 	public String userInput;
@@ -18,7 +20,9 @@ public class LoginMenu {
 	public Keypad keypad;
 	private char mask;
 	
-	
+	/**
+	 * Create a Login Menu object for the customer to login
+	 */
 	LoginMenu() {
 		// set the panel layouts
 		this.panel11 = new JPanel(new MigLayout("top, center, flowy, debug", "center"));
@@ -52,6 +56,9 @@ public class LoginMenu {
 		keyPadListeners();
 	}
 	
+	/** Add the created select menu to the panel
+	 * @param panel		the JPanel object
+	 */
 	public void addSelectMenu(JPanel panel) {
 		// add the components to the center panel and set the layout
 		panel.setLayout(new MigLayout("top, center, flowy, debug", "center"));
@@ -85,16 +92,25 @@ public class LoginMenu {
 		this.keypad.bDel.addActionListener(BC2);
 	}
 	
+	/** Update the message to display
+	 * @param text		the string
+	 */
 	public void updateMessage(String text) {
 		this.message1.setText(text);
 	}
 	
+	/**
+	 * Clear the fields in the select menu after the user input is successful
+	 */
 	public void clearFields() {
 		this.userInput = "";
 		this.errorLabel.setText("");
 		this.padField.setText("");
 	}
 	
+	/**
+	 * Clear the fields in the select menu after the user input is unsuccessful
+	 */
 	public void retry() {
 		this.userInput = "";
 		this.padField.setText("");
@@ -115,7 +131,7 @@ public class LoginMenu {
 	}
 	
 	/**
-	 * class that handles events for the clear/cancel buttons event
+	 * class that handles events for the clear and cancel buttons event
 	 */
 	public class BClear implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -125,7 +141,7 @@ public class LoginMenu {
 	}
 	
 	/**
-	 * class that handles events for the delete buttons event
+	 * class that handles events for the delete button event
 	 */
 	public class BDelete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 public class Keypad {
 	
+	/* The JButtons that create the keypad and are used to perform operations */
 	public JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0;
 	public JButton d1, bDel, bDot, bCancel, bClear, bEnter;
 	

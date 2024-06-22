@@ -35,6 +35,12 @@ public class Bank {
 	public ArrayList<Account> getAccounts(){
 		return accounts;
 	}
+	public int getAccountUidLength() {
+		return accountUidLen;
+	}
+	public int getHolderUidLength() {
+		return holderUidLen;
+	}
 	
 	/** add an account to account holder
 	 * @param account	the account to add

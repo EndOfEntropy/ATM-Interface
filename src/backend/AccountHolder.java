@@ -158,40 +158,5 @@ public class AccountHolder {
 	public String getAccountUid(int accIndex) {
 		return this.accounts.get(accIndex).getUid();
 	}
-	
-	/**	Check if a card number is valid (a 16 digit number)
-	 * @param cardNumber	the card number
-	 * @return				whether the card number is valid
-	 */
-	private boolean validateCardNumber(String cardNumber) {
-		if(cardNumber.length() != 16) {
-			return false;
-		}
-		try {
-			Long.parseLong(cardNumber);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-
-		return true;
-	}
-	
-	/**	Check if a pin number is valid (a 4 digit number)
-	 * @param pin		the pin
-	 * @return			whether the pin number is valid
-	 */
-	private boolean validatePinCode(String pin) {
-		if(pin.length() != 4) {
-			return false;
-		}
-		try {
-			Integer.parseInt(pin);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-		
-		return true;
-	}
-
 
 }

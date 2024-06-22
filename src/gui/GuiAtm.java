@@ -1,21 +1,16 @@
-/**
- * Graphical User Interface that displays a word count application
- * 
- * Features:
- * - Counts number of characters
- * - Counts number of syllables
- * - Counts number of words
- * - Counts number of sentences
- * - Edit text through the user interface
- * - Open a text file
- * - Save a text file
+/*	Graphical User Interface that displays an ATM application
+
+ 	Features:
+    The customer can deposit funds
+    The customer can withdraw funds
+    The customer can check his account balance
+    The customer can transfer funds between his accounts
+    The customer can transfer funds to another customer using the account uid
  */
+
 package gui;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.util.Optional;
 import javax.swing.*;
@@ -28,19 +23,18 @@ import net.miginfocom.swing.MigLayout;
  * @author Mickael Grivolat
  */
 
-// Graphical User Interface that displays a word count application
-public class GuiAtm extends JFrame implements ActionListener, MouseListener{
-
-	private static final long serialVersionUID = 1L;
+/**
+ * Graphical User Interface that displays an ATM application
+ */
+public class GuiAtm {
+	/* Swing resources needed to create the Graphical User Interface object */
+	/* The login menu, the select menu, the Bank object, the account holder object */
+	
 	private static ImageIcon logo;
 	private static JFrame mainFrame;
 	private static JPanel panel1, panel2, panel3, panel4, panel5;
-	private static JPopupMenu popup;
-	private static JMenuItem copy, paste;
-	private static JTextArea textArea1;
 	private static JLabel bankLabel, trxComplete;
 	private static JButton bBack, bRetCard, menu1, menu2, menu3, menu4, menu5, menu6;
-	private static JButton b1, b2, b3, b4, b5, b6, b7, b8;
 	private static SelectMenu selectMenu;
 	private static LoginMenu loginMenu;
 	private static Bank bank;
@@ -49,16 +43,13 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 	private static final int frameW = 800, frameH = 600;
 
 	
-	
 	GuiAtm() {
 		initialize();
-		// border components removed as another UI has been selected
-		//createBorderComponents();
 		loginMenu();
 	}
 	
 	/**
-	 * Create and set up the frame, panels and right-click pop up menu
+	 * Create and set up the frame, panels, layouts and labels
 	 */
 	private void initialize() {
 		// Set the frame of the GUI and load the logo
@@ -69,7 +60,6 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.setSize(frameW, frameH);
 		mainFrame.setVisible(true);
 		mainFrame.setIconImage(logo.getImage());
-		mainFrame.addMouseListener(this);
 
 		// Set the panel components in the frame.
 		panel1 = new JPanel();
@@ -106,21 +96,14 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		initiateBank();
 		trxComplete = new JLabel("Transaction complete!");
 		
-		// add menu items to popup
-		popup = new JPopupMenu();
-		copy = new JMenuItem("Copy");
-		paste = new JMenuItem("Paste");
-		popup.add(copy);
-		popup.add(paste);
-		copy.addActionListener(this);
-		paste.addActionListener(this);
-		
 		// repaint the frame for newly added components
 		mainFrame.revalidate();
 		mainFrame.repaint();
 	}
 	
-	
+	/**
+	 * Create the Bank object, the account holder objects and the account objects
+	 */
 	private void initiateBank() {
 		// create the bank object
 		bank = new Bank("New Bank");
@@ -137,51 +120,8 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 	}
 	
 	/**
-	 * Create the border components. They remain unchanged throughout the application.
+	 * Create the login menu
 	 */
-	private void createBorderComponents() {
-		// initialize the resources
-		b1 = new JButton("1");
-		b2 = new JButton("2");
-		b3 = new JButton("3");
-		b4 = new JButton("4");
-		b5 = new JButton("5");
-		b6 = new JButton("6");
-		b7 = new JButton("7");
-		b8 = new JButton("8");
-		b1.addActionListener(this);
-		b2.addActionListener(this);
-		b3.addActionListener(this);
-		b4.addActionListener(this);
-		b5.addActionListener(this);
-		b6.addActionListener(this);
-		b7.addActionListener(this);
-		b8.addActionListener(this);
-		
-		// set buttons preferred size add components to the borders		
-		b1.setPreferredSize(new Dimension(70, 40));
-		b2.setPreferredSize(new Dimension(70, 40));
-		b3.setPreferredSize(new Dimension(70, 40));
-		b4.setPreferredSize(new Dimension(70, 40));
-		b5.setPreferredSize(new Dimension(70, 40));
-		b6.setPreferredSize(new Dimension(70, 40));
-		b7.setPreferredSize(new Dimension(70, 40));
-		b8.setPreferredSize(new Dimension(70, 40));
-		panel3.add(b1, "width 70!, height 40!");
-		panel3.add(b2, "width 70!, height 40!");
-		panel3.add(b3, "width 70!, height 40!");
-		panel3.add(b4, "width 70!, height 40!");
-		panel2.add(b5, "width 70!, height 40!");
-		panel2.add(b6, "width 70!, height 40!");
-		panel2.add(b7, "width 70!, height 40!");
-		panel2.add(b8, "width 70!, height 40!");
-
-		// repaint the frame for newly added components
-		mainFrame.revalidate();
-		mainFrame.repaint();
-	}
-	
-	
 	public void loginMenu() {
 		// remove all components from the container
 		panel1.removeAll();
@@ -202,7 +142,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
-	
+	/**
+	 * Create the main menu
+	 */
 	public void mainMenu() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -256,7 +198,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
-
+	/**
+	 * Display the accounts balance of the customer
+	 */
 	private void showAccountsBalance() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -281,8 +225,8 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
-	/** Prints the transaction history of a specific account
-	 * @param currCust	the logged-in holder object
+	/**
+	 * Display the transaction history of the selected account
 	 */
 	private void transactionsHistoryMenu() {
 		// remove all components from center panel
@@ -306,7 +250,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
-	
+	/**
+	 * Create the deposit menu
+	 */
 	private void depositMenu() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -329,7 +275,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
-	
+	/**
+	 * Create the withdrawal menu
+	 */
 	private void withdrawalMenu() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -352,6 +300,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
+	/**
+	 * Create the internal transfer menu
+	 */
 	private void internalTransferMenu() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -375,6 +326,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		mainFrame.repaint();
 	}
 	
+	/**
+	 * Create the external transfer menu
+	 */
 	private void externalTransferMenu() {
 		// remove all components from center panel
 		panel1.removeAll();
@@ -438,6 +392,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		}
 	}
 	
+	/**
+	 * Add action listeners to the main menu buttons
+	 */
 	public void optionsButtonListeners() {
 		BOptions BO = new BOptions();
 		
@@ -449,7 +406,9 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 		menu6.addActionListener(BO);
 	}
 
-	
+	/**
+	 * class that handles events for the main menu buttons in the main menu
+	 */
 	public class BOptions implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton)e.getSource();
@@ -816,18 +775,10 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 			currCust = null;
 		}
 	}
-	
-	// Action event handler for copy/paste menu functionalities, open file and save file (button 1-2)
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(copy)) {
-			clipboardCopy();
-		}
-		if(e.getSource().equals(paste)) {
-			clipboardPaste();
-		}
-	}
-	
+		
+	/** dispatch the operation selected by the customer to the appropriate function
+	 * @param selection		the user selection
+	 */
 	private void dispatchUserInput(String selection) {
 		switch (selection) {
 		
@@ -952,58 +903,7 @@ public class GuiAtm extends JFrame implements ActionListener, MouseListener{
 				.replaceAll("\n", "<br/>") + "</html>";
 	}
 	
-	private void clipboardCopy() {
-		StringSelection ss = new StringSelection(textArea1.getSelectedText());
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-	}
-	
-	private void clipboardPaste() {
-		Clipboard systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		if (systemClipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
-        {
-            try {
-				String text = (String)systemClipboard.getData(DataFlavor.stringFlavor);
-				textArea1.insert(text, textArea1.getCaretPosition());
-				textArea1.validate();
-			} catch (Exception e2) {
-				//handle exception
-			}
-        }
-	}
-	
-	// Event manager for mouse actions
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// Mouse pressed and released
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		mouseReleased(e);
-		
-	}
-	/* isPopupTrigger should be checked in both mousePressedand mouseReleased 
-	 * for proper cross-platform functionality.*/
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if(e.isPopupTrigger()) {
-			popup.show(e.getComponent(), e.getX(), e.getY());
-		}
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// Invoked when a mouse enters a component
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// Invoked when a mouse exits a component
-		
-	}
-	
 	public static void main(String[] args) {
 		new GuiAtm();
-		
 	}
 }
